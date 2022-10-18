@@ -4,6 +4,8 @@
  */
 
 function createUser(fields) {
+  console.log("creating user 1");
+  console.log("creating user 2");
   fetch('/api/users', {method: 'POST', body: JSON.stringify(fields), headers: {'Content-Type': 'application/json'}})
     .then(showResponse)
     .catch(showResponse);
@@ -28,6 +30,10 @@ function deleteUser(fields) {
 }
 
 function signIn(fields) {
+  console.log("signing in");
+  console.log("signing in 2");
+  console.log("signing in 3");
+  console.log("Mama mia");
   fetch('/api/users/session', {method: 'POST', body: JSON.stringify(fields), headers: {'Content-Type': 'application/json'}})
     .then(showResponse)
     .catch(showResponse);

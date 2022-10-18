@@ -8,10 +8,11 @@
   <script src="/scripts/freet.js"></script>
   <script src="/scripts/user.js"></script>
   <script src="/scripts/index.js"></script>
+  <script src="/scripts/comment.js"></script>
 </head>
 
 <body>
-  <header>
+  <header>s
     <h1>Fritter</h1>
   </header>
 
@@ -117,6 +118,53 @@
           </div>
           <input type="submit" value="Delete Freet">
         </form>
+
+        <form id="view-comments-by-freet">
+          <h3>View Comments By Freet</h3>
+          <div>
+            <label for="parentId">FreetId:</label>
+            <input id="parentId" name="parentId">
+          </div>
+          <input type="submit" value="View Comments By Freet">
+        </form>
+
+        <form id="create-comment">
+          <h3>Create Comment</h3>
+          <div>
+            <label for="parentId">Parent Freet ID:</label>
+            <textarea id="parentId" name="parentId"></textarea>
+          </div>
+          <div>
+            <label for="content">Content:</label>
+            <textarea id="content" name="content"></textarea>
+          </div>
+          <input type="submit" value="Create Comment">
+        </form>
+
+
+        <form id="edit-comment">
+          <h3>Edit Comment</h3>
+          <div>
+            <label for="id">ID:</label>
+            <input id="id" name="id">
+          </div>
+          <div>
+            <label for="content">Content:</label>
+            <textarea id="content" name="content"></textarea>
+          </div>
+          <input type="submit" value="Edit Comment">
+        </form>
+
+        <form id="delete-comment">
+          <h3>Delete Comment</h3>
+          <div>
+            <label for="id">ID:</label>
+            <input id="id" name="id">
+          </div>
+          <input type="submit" value="Delete Comment">
+        </form>
+
+
       </div>
     </section>
     <section>

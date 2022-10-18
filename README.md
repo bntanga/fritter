@@ -167,9 +167,9 @@ Mongoose allows you to use schema validation if you want to ensure that certain 
 
 within the schema. This tells us that the `content` field must have type `String`, and that it is required for documents in that collection. A freet must have a `String` type value for the `content` field to be added to the freets collection.
 
-## API routes
 
-The following api routes have already been implemented for you (**Make sure to document all the routes that you have added.**):
+
+## API routes
 
 #### `GET /`
 
@@ -197,6 +197,7 @@ This renders the `index.html` file that will be used to interact with the backen
 **Body**
 
 - `content` _{string}_ - The content of the freet
+- `expiry` _{string}_ - Optional expiry date of a Freet
 
 **Returns**
 
@@ -207,6 +208,7 @@ This renders the `index.html` file that will be used to interact with the backen
 
 - `403` if the user is not logged in
 - `400` If the freet content is empty or a stream of empty spaces
+- `400` If the expiry date is in the past
 - `413` If the freet content is more than 140 characters long
 
 #### `DELETE /api/freets/:freetId?` - Delete an existing freet
@@ -239,6 +241,57 @@ This renders the `index.html` file that will be used to interact with the backen
 - `403` if the user is not the author of the freet
 - `400` if the new freet content is empty or a stream of empty spaces
 - `413` if the new freet content is more than 140 characters long
+
+
+#### `POST /api/expiry/:freetId?` - Add expiry date to freet
+
+**Body**
+
+- `expiry` _{string}_ - Expiry date of a Freet
+
+**Returns**
+
+- A success message
+- An object with the updated freet
+
+**Throws**
+- `400` if the new expiry date is in the past
+- `400` if the freet already has an expiry date
+- `403` if the user is not the author of the freet
+- `403` if the user is not logged in
+- `404` if the freetId is invalid
+
+#### `PUT /api/expiry/:freetId?` - Update expiry of freet
+
+**Body**
+
+- `expiry` _{string}_ - New expiry date of a Freet
+
+**Returns**
+
+- A success message
+- An object with the updated freet
+
+**Throws**
+- `400` if the new expiry date is in the past
+- `400` if the freet does not have an expiry date
+- `403` if the user is not the author of the freet
+- `403` if the user is not logged in
+- `404` if the freetId is invalid
+
+#### `DELETE /api/expiry/:freetId?` - Remove expiry date from freet
+
+
+**Returns**
+
+- A success message
+
+**Throws**
+- `400` if the freet does not have an expiry date
+- `403` if the user is not the author of the freet
+- `403` if the user is not logged in
+- `404` if the freetId is invalid
+
 
 #### `POST /api/users/session` - Sign in user
 
@@ -313,3 +366,117 @@ This renders the `index.html` file that will be used to interact with the backen
 **Throws**
 
 - `403` if the user is not logged in
+
+
+#### `POST /api/likes:freetId?` - Like a specific freet
+
+**Returns**
+
+- A success message
+
+**Throws**
+
+- `400` if the Freet was already liked by user
+- `403` if the user is not logged in
+- `404` if the freetId is invalid
+
+#### `DELETE /api/likes:freetId?` - Remove a like on a specific freet
+
+**Returns**
+
+- A success message
+
+**Throws**
+
+- `400` if the Freet was not liked by user
+- `403` if the user is not logged in
+- `404` if the freetId is invalid
+
+#### `GET /api/like:freetId?` - Get all users who liked a specific freet
+
+**Returns**
+
+- An array of usernames
+
+**Throws**
+
+- `403` if the user is not logged in
+- `404` if the freetId is invalid
+
+
+#### `POST /api/comments:freetId?` - Post a comment under a freet
+
+**Body**
+
+- `content` _{string}_ - The content of the freet
+
+**Returns**
+
+- A success message
+- An object with the created comment
+
+**Throws**
+- `400` If the freet content is empty or a stream of empty spaces
+- `403` if the user is not logged in
+- `404` if the freetId is invalid
+- `413` if the comment content is more than 140 characters long
+
+#### `Get /api/comments:freetId?` - Get all comments under a freet
+
+**Returns**
+
+- An array of all comments under a freet sorted in descending order by date created
+
+**Throws**
+
+- `403` if the user is not logged in
+- `404` if the freetId is invalid
+
+#### `DELETE /api/comments/:commentId?` - Delete an existing comment
+
+**Returns**
+
+- A success message
+
+**Throws**
+
+- `403` if the user is not logged in
+- `403` if the user is not the author of the comment
+- `404` if the commentId is invalid
+
+#### `PUT /api/comments/:commentId?` - Update an existing comment
+
+**Body**
+
+- `content` _{string}_ - The new content of the comment
+
+**Returns**
+
+- A success message
+- An object with the updated comment
+
+**Throws**
+
+- `400` if the new comment content is empty or a stream of empty spaces
+- `403` if the user is not the author of the comment
+- `403` if the user is not logged in
+- `404` if the commentId is invalid
+- `413` if the new comment content is more than 140 characters long
+
+
+#### `POST /api/anonymous_comments:freetId?` - Post an anonymous comment under a freet
+
+**Body**
+
+- `content` _{string}_ - The content of the freet
+
+**Returns**
+
+- A success message
+- A object with the created comment
+
+**Throws**
+- `400` If the freet content is empty or a stream of empty spaces
+- `403` if the user is not logged in
+- `404` if the freetId is invalid
+- `413` if the comment content is more than 140 characters long
