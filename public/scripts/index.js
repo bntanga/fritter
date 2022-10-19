@@ -43,6 +43,7 @@ const formsAndHandlers = {
   'create-comment': createComment,
   'edit-comment': editComment,
   'delete-comment': deleteComment,
+  'create-anonymous-comment': createAnonymousComment,
 };
 
 // Attach handlers to forms
