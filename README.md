@@ -392,7 +392,7 @@ This renders the `index.html` file that will be used to interact with the backen
 - `403` if the user is not logged in
 - `404` if the freetId is invalid
 
-#### `GET /api/like:freetId?` - Get all users who liked a specific freet
+#### `GET /api/likes:freetId?` - Get all users who liked a specific freet
 
 **Returns**
 

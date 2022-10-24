@@ -32,8 +32,12 @@ const constructFreetResponse = (freet: HydratedDocument<Freet>): FreetResponse =
       versionKey: false // Cosmetics; prevents returning of __v property
     })
   };
+
   const {username} = freetCopy.authorId;
   delete freetCopy.authorId;
+  if (freetCopy.expiryDate === null){
+    delete freetCopy.expiryDate;
+  }
   return {
     ...freetCopy,
     _id: freetCopy._id.toString(),

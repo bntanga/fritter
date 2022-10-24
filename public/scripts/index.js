@@ -44,6 +44,12 @@ const formsAndHandlers = {
   'edit-comment': editComment,
   'delete-comment': deleteComment,
   'create-anonymous-comment': createAnonymousComment,
+  'like-freet': likeFreet,
+  'unlike-freet': unlikeFreet,
+  'view-likes-by-freet' : viewLikesByFreet,
+  'edit-expiry': editExpiry,
+  'add-expiry': addExpiry,
+  'remove-expiry': deleteExpiry,
 };
 
 // Attach handlers to forms

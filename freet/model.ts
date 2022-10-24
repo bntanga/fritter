@@ -14,6 +14,7 @@ export type Freet = {
   dateCreated: Date;
   content: string;
   dateModified: Date;
+  expiryDate: Date;
 };
 
 export type PopulatedFreet = {
@@ -22,6 +23,7 @@ export type PopulatedFreet = {
   dateCreated: Date;
   content: string;
   dateModified: Date;
+  expiryDate: Date;
 };
 
 // Mongoose schema definition for interfacing with a MongoDB table
@@ -49,8 +51,12 @@ const FreetSchema = new Schema<Freet>({
   dateModified: {
     type: Date,
     required: true
+  },
+  expiryDate: {
+    type: Date,
+    required: false
   }
 });
-
+FreetSchema.index( { "expiryDate": 1 }, { expireAfterSeconds: 0 } )
 const FreetModel = model<Freet>('Freet', FreetSchema);
 export default FreetModel;

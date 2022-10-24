@@ -4,6 +4,8 @@ import FreetCollection from './collection';
 import * as userValidator from '../user/middleware';
 import * as freetValidator from '../freet/middleware';
 import * as util from './util';
+import ExpiryCollection from "../expiry/collection";
+import moment from 'moment';
 
 const router = express.Router();
 
@@ -67,8 +69,26 @@ router.post(
   ],
   async (req: Request, res: Response) => {
     const userId = (req.session.userId as string) ?? ''; // Will not be an empty string since its validated in isUserLoggedIn
-    const freet = await FreetCollection.addOne(userId, req.body.content);
-
+    let set_expiry = false;
+    if (req.body.expiryDate !== ''){
+        if (!moment(req.body.expiryDate).isValid()){
+            res.status(400).json({
+                error: 'Invalid expiry date.'
+            });
+            return;
+        }
+        if (new Date(req.body.expiryDate) < new Date()){
+                res.status(400).json({
+                    error: "Cannot set expiry date in past"
+                });
+                return;
+        }
+        set_expiry = true;
+    }
+    let freet = await FreetCollection.addOne(userId, req.body.content);
+    if (set_expiry){
+        freet = await ExpiryCollection.changeOne(freet._id, req.body.expiryDate);
+    }
     res.status(201).json({
       message: 'Your freet was created successfully.',
       freet: util.constructFreetResponse(freet)

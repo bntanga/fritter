@@ -8,6 +8,8 @@
   <script src="/scripts/freet.js"></script>
   <script src="/scripts/user.js"></script>
   <script src="/scripts/comment.js"></script>
+  <script src="/scripts/like.js"></script>
+  <script src="/scripts/expiry.js"></script>
   <script src="/scripts/index.js"></script>
 </head>
 
@@ -94,6 +96,10 @@
             <label for="content">Content:</label>
             <textarea id="content" name="content"></textarea>
           </div>
+          <div>
+            <label for="expiryDate">(Optional) Expiry Date. Format: YYYY-MM-DD{T}HH:MM</label>
+            <input id="expiryDate" name="expiryDate"/>
+          </div>
           <input type="submit" value="Create Freet">
         </form>
 
@@ -118,11 +124,35 @@
           </div>
           <input type="submit" value="Delete Freet">
         </form>
+        <form id="like-freet">
+          <h3>Like Freet</h3>
+          <div>
+            <label for="id">FreetID:</label>
+            <input id="id" name="id">
+          </div>
+          <input type="submit" value="Like Freet">
+        </form>
+        <form id="unlike-freet">
+          <h3>Remove Like from Freet</h3>
+          <div>
+            <label for="id">FreetID:</label>
+            <input id="id" name="id">
+          </div>
+          <input type="submit" value="Remove Like">
+        </form>
+        <form id="view-likes-by-freet">
+          <h3>View Likes by Freet</h3>
+          <div>
+            <label for="id">FreetID:</label>
+            <input id="id" name="id">
+          </div>
+          <input type="submit" value="View Likes">
+        </form>
 
         <form id="view-comments-by-freet">
           <h3>View Comments By Freet</h3>
           <div>
-            <label for="parentId">FreetId:</label>
+            <label for="parentId">FreetID:</label>
             <input id="parentId" name="parentId">
           </div>
           <input type="submit" value="View Comments By Freet">
@@ -132,7 +162,7 @@
           <h3>Create Comment</h3>
           <div>
             <label for="parentId">Parent Freet ID:</label>
-            <textarea id="parentId" name="parentId"></textarea>
+            <input id="parentId" name="parentId"/>
           </div>
           <div>
             <label for="content">Content:</label>
@@ -145,7 +175,7 @@
         <form id="edit-comment">
           <h3>Edit Comment</h3>
           <div>
-            <label for="id">ID:</label>
+            <label for="id">Comment ID:</label>
             <input id="id" name="id">
           </div>
           <div>
@@ -158,7 +188,7 @@
         <form id="delete-comment">
           <h3>Delete Comment</h3>
           <div>
-            <label for="id">ID:</label>
+            <label for="id">Comment ID:</label>
             <input id="id" name="id">
           </div>
           <input type="submit" value="Delete Comment">
@@ -168,13 +198,45 @@
           <h3>Create Anonymous Comment</h3>
           <div>
             <label for="parentId">Parent Freet ID:</label>
-            <textarea id="parentId" name="parentId"></textarea>
+            <input id="parentId" name="parentId"/>
           </div>
           <div>
             <label for="content">Content:</label>
             <textarea id="content" name="content"></textarea>
           </div>
           <input type="submit" value="Submit Anonymous Comment">
+        </form>
+        <form id="add-expiry">
+          <h3>Add Expiry: </h3>
+          <div>
+            <label for="id">Freet ID:</label>
+            <input id="id" name="id">
+          </div>
+          <div>
+            <label for="expiryDate">New Expiry Date. Format: YYYY-MM-DD{T}HH:MM</label>
+            <input id="expiryDate" name="expiryDate"/>
+          </div>
+          <input type="submit" value="Add expiry">
+        </form>
+        <form id="edit-expiry">
+          <h3>Edit Expiry </h3>
+          <div>
+            <label for="id">Freet ID:</label>
+            <input id="id" name="id">
+          </div>
+          <div>
+            <label for="expiryDate">New Expiry Date. Format: YYYY-MM-DD{T}HH:MM</label>
+            <input id="expiryDate" name="expiryDate"/>
+          </div>
+          <input type="submit" value="Edit Expiry">
+        </form>
+        <form id="remove-expiry">
+          <h3>Remove Expiry </h3>
+          <div>
+            <label for="id">Freet ID:</label>
+            <input id="id" name="id">
+          </div>
+          <input type="submit" value="Remove Expiry">
         </form>
 
 
@@ -188,5 +250,4 @@
     </section>
   </main>
 </body>
-
 </html>
